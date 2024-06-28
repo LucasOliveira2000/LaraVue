@@ -46,6 +46,7 @@ class UserController extends Controller
     {
         return Inertia::render("User/Create.vue",[
             "titulo" => "Cadastro de Usuários",
+            "erros"  => "erros",
             "users"  => [
                 "name"          => '',
                 "email"         => '',
@@ -81,11 +82,13 @@ class UserController extends Controller
 
             $request->session()->regenerate();
 
+            return redirect()->route("produto.home")->with("sucess", "Usuário Cadastrado com Sucesso");
+
         }catch(Exception $e){
             return $e->getMessage();
         }
 
-        return to_route("site.home")->compact($user->name);
+        return to_route("site.home");
     }
 
 

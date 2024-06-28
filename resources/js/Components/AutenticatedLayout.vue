@@ -6,9 +6,9 @@
             </div>
             <nav class="navbar">
                 <ul class="ul_header">
-                <a href="/home">Home</a>
-                <a href="/produto/home">Produtos</a>
-                <a href="">Contatos</a>
+                    <a href="/home">Home</a>
+                    <a href="/produto/home">Produtos</a>
+                    <a href="">Contatos</a>
                 </ul>
             </nav>
         </header>
@@ -32,26 +32,26 @@
   margin: 0px;
   padding: 0px;
   overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .layout-container {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   background-color: #022B42;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  color: white; /* Para que o texto fique legível sobre o fundo escuro */
-  font-family: Arial, sans-serif;
+  color: white;
 }
 
 .header {
   display: flex;
   align-items: center;
-  justify-content:space-between;
-  background-color: #003554; /* Um tom ligeiramente diferente para o header e o footer */
+  justify-content: space-between;
+  background-color: #003554;
   padding: 20px;
   text-align: center;
   border-bottom: 1px solid white;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   border-radius: 10px 10px 600px 20px;
 }
 
@@ -61,7 +61,6 @@
   align-items: center;
   font-size: 25px;
   gap: 10px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .imagem {
@@ -69,17 +68,24 @@
   margin-left: 60px;
 }
 
-a {
+
+.navbar ul {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  margin-right: 60px;
+}
+
+.navbar a {
   text-decoration: none;
   color: white;
   transition: color 0.1s ease-in-out;
   padding: 10px;
-  position: relative;
   font-size: 20px;
-
+  position: relative;
 }
 
-a:after {
+.navbar a:after {
   content: '';
   position: absolute;
   width: 100%;
@@ -92,16 +98,15 @@ a:after {
   transition: all 0.3s ease-in-out;
 }
 
-a:hover:after, a.active:after {
+.navbar a:hover:after, .navbar a.active:after {
   visibility: visible;
   transform: scaleX(1);
 }
 
-.ul_header {
-  display: flex;
-  justify-content: space-between;
-  margin-right: 150px;
-  gap: 30px;
+.main-content {
+  flex: 1;
+  padding: 20px;
+  background-color: #022B42;
 }
 
 .footer {
@@ -109,21 +114,11 @@ a:hover:after, a.active:after {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #003554; /* Um tom ligeiramente diferente para o header e o footer */
+  background-color: #003554;
   padding: 20px;
-  bottom: 0;
-  position: absolute;
-  width: 100%;
   border-top: 1px solid white;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 20px;
-  border-radius: 600px  10px 10px 20px;
-}
-
-.main-content {
-  padding: 20px;
-  margin: 10px;
-  background-color: #022B42;
+  border-radius: 600px 10px 10px 20px;
 }
 
 </style>

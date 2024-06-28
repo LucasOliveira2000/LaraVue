@@ -17,12 +17,8 @@ class Autenticador
     public function handle(Request $request, Closure $next): Response
     {
         if(!Auth::check()){
-            $userLogado = Auth::user();
-            $user = [
-                "name"      => $userLogado->name,
-                "email"     => $userLogado->email
-            ];
-            return redirect()->route('user.logar')->compact($user);
+            
+            return redirect()->route('user.logar');
         }
         return $next($request);
     }
