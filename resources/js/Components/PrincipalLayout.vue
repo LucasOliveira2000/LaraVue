@@ -6,8 +6,8 @@
             </div>
             <nav class="navbar">
                 <ul class="ul_header">
-                <a href="/home">Home</a>
-                <a href="/produto/home">Produtos</a>
+                <a href="">Home</a>
+                <a href="">Produtos</a>
                 <a href="">Contatos</a>
                 </ul>
             </nav>
@@ -112,7 +112,7 @@ a:hover:after, a.active:after {
   background-color: #003554; /* Um tom ligeiramente diferente para o header e o footer */
   padding: 20px;
   bottom: 0;
-  position: absolute;
+  position: relative;
   width: 100%;
   border-top: 1px solid white;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -121,8 +121,8 @@ a:hover:after, a.active:after {
 }
 
 .main-content {
+  flex: 1;
   padding: 20px;
-  margin: 10px;
   background-color: #022B42;
 }
 

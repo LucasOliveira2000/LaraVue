@@ -1,9 +1,8 @@
 <template>
 <AutenticatedLayout>
     <section>
-        <h1>Redirecionado</h1>
-    </section>
 
+    </section>
 </AutenticatedLayout>
 </template>
 

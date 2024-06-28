@@ -1,7 +1,7 @@
 <template>
   <AutenticatedLayout>
     <header>
-      <title>Login</title>
+      <title>{{ props.titulo }}</title>
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
@@ -34,6 +34,7 @@
                   <q-icon name="password" />
                 </template>
               </q-input>
+              <a href="/user/logar" class="registro">Já possui conta?</a>
             </div>
             <div class="div_submit">
               <PrimaryButton class="submit">Salvar</PrimaryButton>
@@ -54,13 +55,14 @@ import PrimaryButton from '../../Components/PrimaryButton.vue';
 
 
 const props = defineProps({
+    titulo: String,
     users: Object
 })
 
 const form = reactive({
     name: props.users.name,
     email: props.users.email,
-    password: props.users.password 
+    password: props.users.password
 });
 
 function submit() {
@@ -92,7 +94,7 @@ function submit() {
 .div_formulario{
   display: block;
   padding: 50px;
-  padding-top: 30px;
+  padding-top: 15px;
   padding-bottom: 30px;
   background-color: white;
   border-radius: 5px 60px;
@@ -107,6 +109,15 @@ function submit() {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+}
+
+.registro{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    color: #032030;
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 </style>
