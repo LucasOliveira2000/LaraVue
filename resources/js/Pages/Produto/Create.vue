@@ -21,6 +21,13 @@
                         </q-input>
                     </div>
                     <div class="div_conteudo" style="max-width: 400px; width: 300px;">
+                        <q-input color="indigo-10" v-model="form.quantidade" label="quantidade" placeholder="Quantidade do Produto" bg-color="gray"  rounded filled>
+                        <template v-slot:prepend>
+                            <q-icon name="pin" />
+                        </template>
+                        </q-input>
+                    </div>
+                    <div class="div_conteudo" style="max-width: 400px; width: 300px;">
                         <q-input color="indigo-10" v-model="form.valor_compra" label="Valor Comprado" placeholder="Valor Comprado do Produto" bg-color="gray" rounded filled>
                         <template v-slot:prepend>
                             <q-icon name="paid" />
@@ -34,6 +41,19 @@
                         </template>
                         </q-input>
                     </div>
+                    <div class="div_conteudo" style="max-width: 300px; width: 300px;">
+                        <q-uploader
+                            url="handleFileChange"
+                            style="max-width: 300px"
+                            v-model="form.imagePreview"
+                            label="IMAGEM"
+                            multiple
+                            color="indigo-10"
+                            max-file-size="5000"
+                            @rejected="onRejected"
+                            accept="imagem/jpeg, imagem/png"
+                        />
+                    </div>
                     <div class="button-group">
                         <PrimaryButton  class="submit">Enviar</PrimaryButton>
                     </div>
@@ -45,6 +65,7 @@
 
 
 <script setup>
+    import { router } from '@inertiajs/vue3';
     import AutenticatedLayout from '../../Components/AutenticatedLayout.vue';
     import PrimaryButton from '../../Components/PrimaryButton.vue';
     import { reactive } from 'vue';
@@ -63,6 +84,15 @@
         valor_venda: props.produto.valor_venda,
         imagem: props.produto.imagem
     });
+
+    function handleFileChange(event) {
+        form.imagem = event.target.files[0];
+        form.imagePreview = form.imagem ? URL.createObjectURL(form.imagem) : null;
+    }
+
+    function submit(){
+        router.post("/produto/store", form)
+    }
 
 </script>
 

@@ -12,6 +12,7 @@ class Produto extends Model
 
     protected $fillable = [
         'uuid',
+        'user_id',
         'nome',
         'marca',
         'valor_compra',

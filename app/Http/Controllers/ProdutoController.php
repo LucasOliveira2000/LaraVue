@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Produto;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class ProdutoController extends Controller
@@ -12,9 +13,11 @@ class ProdutoController extends Controller
 
     public function home()
     {
+        $produtos = Produto::where("user_id", Auth::user()->id)->get();
 
         return Inertia::render("Produto/Home.vue", [
-            "titulo"    => "Produtos"
+            "titulo"    => "Produtos",
+            "produtos"  => $produtos
         ]);
     }
 
@@ -37,7 +40,32 @@ class ProdutoController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "nome"              => "required",
+            "marca"             => "required",
+            "quantidade"        => "required",
+            "imagem"            => "image|mimes:jpeg,png,jpg,gif|max:100000",
+            "valor_venda"       => "",
+            "valor_compra"      => "required",
+        ]);
+
+        if ($request->hasFile('imagem')) {
+            $uploadedImage = $request->file('imagem');
+            $imageName = time() . '.' . $uploadedImage->getClientOriginalExtension();
+            $uploadedImage->storeAs('public/produtos', $imageName);
+        }
+
+        $produtoData = Produto::create([
+            "user_id"       => Auth::user()->id,
+            "nome"          => $request->nome,
+            "marca"         => $request->marca,
+            "quantidade"    => $request->quantidade,
+            "valor_venda"   => converterParaFloat($request->valor_venda),
+            "valor_compra"  => converterParaFloat($request->valor_compra),
+            'imagem'        => $imageName ? $imageName :  public_path('storage/produtos/voxlabs.png')
+        ]);
+
+        return to_route("produto.home")->with("sucess", "Produto ". $produtoData->nome . " Cadastrado com sucesso");
     }
 
 
