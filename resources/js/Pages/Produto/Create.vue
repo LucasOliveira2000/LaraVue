@@ -43,15 +43,12 @@
                     </div>
                     <div class="div_conteudo" style="max-width: 300px; width: 300px;">
                         <q-uploader
-                            url="handleFileChange"
-                            style="max-width: 300px"
                             v-model="form.imagePreview"
-                            label="IMAGEM"
-                            multiple
+                            label="Imagem do Produto"
+                            style="max-width: 300px"
                             color="indigo-10"
-                            max-file-size="5000"
-                            @rejected="onRejected"
-                            accept="imagem/jpeg, imagem/png"
+                            @added="handleFileChange"
+
                         />
                     </div>
                     <div class="button-group">
@@ -85,13 +82,13 @@
         imagem: props.produto.imagem
     });
 
-    function handleFileChange(event) {
-        form.imagem = event.target.files[0];
-        form.imagePreview = form.imagem ? URL.createObjectURL(form.imagem) : null;
+    function handleFileChange(files) {
+        form.imagem = files[0];
     }
 
     function submit(){
         router.post("/produto/store", form)
+        console.log(form);
     }
 
 </script>

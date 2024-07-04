@@ -44,8 +44,8 @@ class ProdutoController extends Controller
             "nome"              => "required",
             "marca"             => "required",
             "quantidade"        => "required",
-            "imagem"            => "image|mimes:jpeg,png,jpg,gif|max:100000",
-            "valor_venda"       => "",
+            "imagem"            => "image",
+            "valor_venda"       => "required",
             "valor_compra"      => "required",
         ]);
 
@@ -55,13 +55,14 @@ class ProdutoController extends Controller
             $uploadedImage->storeAs('public/produtos', $imageName);
         }
 
+
         $produtoData = Produto::create([
             "user_id"       => Auth::user()->id,
             "nome"          => $request->nome,
             "marca"         => $request->marca,
             "quantidade"    => $request->quantidade,
-            "valor_venda"   => converterParaFloat($request->valor_venda),
-            "valor_compra"  => converterParaFloat($request->valor_compra),
+            "valor_venda"   => $request->valor_venda,
+            "valor_compra"  => $request->valor_compra,
             'imagem'        => $imageName ? $imageName :  public_path('storage/produtos/voxlabs.png')
         ]);
 

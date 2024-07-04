@@ -18,8 +18,8 @@ return new class extends Migration
             $table->foreign("user_id")->references("id")->on("users");
             $table->string('nome');
             $table->string('marca');
-            $table->decimal('valor_compra', 2, 0, 0);
-            $table->decimal('valor_venda', 2, 0, 0);
+            $table->decimal('valor_compra', 10, 2);
+            $table->decimal('valor_venda', 10 , 2);
             $table->string('imagem');
             $table->integer('quantidade');
             $table->timestamps();

@@ -118,6 +118,7 @@
   padding: 20px;
   border-top: 1px solid white;
   font-size: 20px;
+  margin-top: 100px;
   border-radius: 600px 10px 10px 20px;
 }
 

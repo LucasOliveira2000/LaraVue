@@ -27,20 +27,46 @@
                 <tbody>
                     <tr v-for="produto in produtos" :key="produto.id" class="tbody_card">
                         <td>{{ produto.id }}</td>
-                        <td>{{ produto.imagem }}</td>
+                        <td>
+                            <img v-if="produto.imagem" :src="'/storage/produtos/' + produto.imagem" class="imagemProduto"/>
+                        </td>
                         <td>{{ produto.nome }}</td>
                         <td>{{ produto.marca }}</td>
                         <td>{{ produto.quantidade }}</td>
                         <td>R$ {{ produto.valor_compra }}</td>
                         <td>R$ {{ produto.valor_venda }}</td>
                         <td>
-                            <q-btn round color="primary" icon="edit" size="10px" />
-                            <q-btn round color="red" icon="delete" size="10px" />
+                            <q-btn round color="indigo-10" icon="search" size="10px">
+                                <q-tooltip>
+                                    Visualizar
+                                </q-tooltip>
+                            </q-btn>
+                            <q-btn round color="primary" icon="edit" size="10px">
+                                <q-tooltip>
+                                    Editar
+                                </q-tooltip>
+                            </q-btn>
+                            <q-btn round color="red" icon="delete" size="10px">
+                                <q-tooltip>
+                                    Excluir
+                                </q-tooltip>
+                            </q-btn>
                         </td>
                     </tr>
 
                 </tbody>
             </table>
+            <div class="div_pagination">
+                    <q-pagination
+                        v-model="current"
+                        max="5"
+                        direction-links
+                        push
+                        color="primary"
+                        active-design="push"
+                        active-color="indigo-10"
+                    />
+                </div>
         </section>
     </AutenticatedLayout>
 </template>
@@ -117,6 +143,18 @@
 .tbody_card td {
   border: 2px solid #030202;
   padding: 10px;
+}
+
+.div_pagination{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.imagemProduto {
+    width: 180px;
+    height: 120px;
 }
 
 </style>
